@@ -18,25 +18,29 @@ export class ChatPage {
 
   sala;
   nome;
+  texto;
+  icones;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private salaService: SalaService) {
     this.sala = this.salaService.salas[this.navParams.get("salaParam").id];
-    this.nome = this.navParams.get("nomeParam")
+    console.log(this.sala)
+    this.nome = this.navParams.get("nomeParam");
+    this.icones = this.navParams.get("iconeParam");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatPage');
   }
 
-  ionViewWillLeave() {
-    this.sala.usuarios = this.sala.usuarios.filter(x => x.nome !== this.nome);
-  }
 
   enviarMensagem(nome, texto) {
     this.sala.mensagens.push({
+      icones: this.icones,
       nome: nome,
       texto: texto
     })
+        this.texto = ""
+    console.log(this.sala.mensagens)
   }
 
 }

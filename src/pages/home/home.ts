@@ -12,13 +12,19 @@ export class HomePage {
   constructor(public navCtrl: NavController, private salaService: SalaService, public alertCtrl: AlertController) {
   }
 
-  onEntrarClick(nome, sala) {
+  onEntrarClick(nome, sala, icone) {
+    console.log(nome)
+    console.log(sala.nome)
+    console.log(icone.nome)
     if (!this.salaService.nomeNaSala(nome, sala)) {
-      sala = this.salaService.salas[sala.id];
-      sala.usuarios.push({nome: nome});
+      console.log(sala.nome)
+      sala = this.salaService.salas[sala.id]; 
+      console.log(sala.nome)
+      sala.usuarios.push({nome: nome}); 
       this.navCtrl.push('ChatPage', {
         nomeParam: nome,
-        salaParam: sala
+        salaParam: sala,
+        iconeParam: icone
       })
     }
     else {

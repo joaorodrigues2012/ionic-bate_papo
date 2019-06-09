@@ -17,5 +17,16 @@
       <ion-option *ngFor="let sala of salaService.salas" [value]="sala">{{sala.nome}}</ion-option>
     </ion-select>
   </ion-item>
-  <button ion-button full (click)="onEntrarClick(nome, sala)">Entrar</button>
+
+  <ion-item>
+    <ion-label>Icone:</ion-label>
+    <ion-select [(ngModel)]="icone">
+      <ion-option *ngFor="let icone of salaService.icones" [value]="icone.nome">
+        {{icone.icone}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+  <button ion-button full (click)="onEntrarClick(nome, sala, icone)">
+    <ion-icon name="send"></ion-icon>&nbsp;&nbsp;Entrar
+  </button>
 </ion-content>

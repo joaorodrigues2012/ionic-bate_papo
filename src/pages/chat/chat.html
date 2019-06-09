@@ -14,7 +14,7 @@
   <ion-list no-lines *ngFor="let mensagem of sala.mensagens">
     <ion-card>
       <ion-card-header>
-        {{mensagem.nome}}:
+        <ion-icon name="{{mensagem.icones}}"></ion-icon> {{mensagem.nome}}:
       </ion-card-header>
       <ion-card-content>
         {{mensagem.texto}}
@@ -25,7 +25,7 @@
 
 <ion-footer>
   <ion-item>
-    <ion-input item-start [(ngModel)]="texto" type="text" placeholder="Mensagem"></ion-input>
+    <ion-input item-start [(ngModel)]="texto" type="text" (keyup.enter)="enviarMensagem(nome,texto)" placeholder="Mensagem"></ion-input>
     <button item-end ion-fab (click)="enviarMensagem(nome, texto)">Enviar</button>
   </ion-item>
 </ion-footer>
