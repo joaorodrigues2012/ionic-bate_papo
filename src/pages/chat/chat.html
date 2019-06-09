@@ -11,21 +11,27 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list no-lines *ngFor="let mensagem of sala.mensagens">
+  <ion-list no-lines *ngFor="let mensagem of sala.mensagens | async | orderBy:'order':true; let iLine = index">
     <ion-card>
       <ion-card-header>
-        <ion-icon name="{{mensagem.icones}}"></ion-icon> {{mensagem.nome}}:
+        <ion-icon name="{{mensagem.icones}}"></ion-icon>
+        {{mensagem.nome}}:
       </ion-card-header>
       <ion-card-content>
-        {{mensagem.texto}}
+        {{mensagem.texto}}&nbsp;&nbsp;&nbsp;
+
+          {{mensagem.adata | date:'dd/MM/yyyy HH:mm'}}
+
       </ion-card-content>
+
     </ion-card>
   </ion-list>
 </ion-content>
 
 <ion-footer>
   <ion-item>
-    <ion-input item-start [(ngModel)]="texto" type="text" (keyup.enter)="enviarMensagem(nome,texto)" placeholder="Mensagem"></ion-input>
+    <ion-input item-start [(ngModel)]="texto" type="text" (keyup.enter)="enviarMensagem(nome,texto)"
+               placeholder="Mensagem"></ion-input>
     <button item-end ion-fab (click)="enviarMensagem(nome, texto)">Enviar</button>
   </ion-item>
 </ion-footer>

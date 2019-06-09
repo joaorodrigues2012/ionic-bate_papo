@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { SalaService } from '../../app/sala.service';
+import {AngularFireDatabase} from "angularfire2/database";
+import * as firebase from "firebase/app";
 
 @Component({
   selector: 'page-home',
@@ -9,17 +11,37 @@ import { SalaService } from '../../app/sala.service';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private salaService: SalaService, public alertCtrl: AlertController) {
+  db;
+  db1;
+
+
+  constructor(public navCtrl: NavController, private salaService: SalaService, public alertCtrl: AlertController, db:
+    AngularFireDatabase) {
+      this.db = db;
   }
 
   onEntrarClick(nome, sala, icone) {
-    console.log(nome)
-    console.log(sala.nome)
-    console.log(icone.nome)
+    console.log(nome);
+    console.log(sala.nome);
+    console.log(sala.mensagens);
+
+    if (sala.nome == "Cinema") {
+      sala.mensagens = this.db.list("/bate-papo/Cinema/");
+    }
+    else if (sala.nome == "Curiosidades") {
+      sala.mensagens = this.db.list("/bate-papo/Curiosidades/");
+    }
+    else if (sala.nome == "Esportes") {
+      sala.mensagens = this.db.list("/bate-papo/Esportes/");
+    }
+    this.db1 = firebase.database().ref('/bate-papo/Cinema/').equalTo(sala.nome);
+
+    console.log(this.db1);
+
     if (!this.salaService.nomeNaSala(nome, sala)) {
-      console.log(sala.nome)
+      console.log(sala.nome);
       sala = this.salaService.salas[sala.id]; 
-      console.log(sala.nome)
+      console.log(sala.nome);
       sala.usuarios.push({nome: nome}); 
       this.navCtrl.push('ChatPage', {
         nomeParam: nome,
