@@ -33,15 +33,6 @@ export class ChatPage {
     console.log(this.sala);
     this.nome = this.navParams.get("nomeParam");
     this.icones = this.navParams.get("iconeParam");
-
-    if (this.sala.nome == "Cinema") {
-      this.db.list("/bate-papo/Cinema/usuarios/").push(this.nome);
-    }else if (this.sala.nome == "Curiosidades") {
-      this.db.list("/bate-papo/Curiosidades/usuarios/").push(this.nome);
-    }else if (this.sala.nome == "Esportes") {
-      this.db.list("/bate-papo/Esportes/usuarios/").push(this.nome);
-    }
-
   }
 
   ionViewDidLoad() {

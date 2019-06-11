@@ -1,22 +1,7 @@
 import {Injectable} from "@angular/core";
-import {AngularFireDatabase} from "angularfire2/database";
 
 @Injectable()
 export class SalaService {
-  constructor(private db: AngularFireDatabase){
-
-  }
-
-  addMensagem(usuario, texto, sala){
-    this.db.list("/salas/" + sala.$key + "/mensagens/").push({
-      usuario: usuario,
-      texto: texto
-    });
-  }
-
-  addUsuario(usuario, sala){
-    this.db.list("/salas/" + sala.$key + "/usuarios/").push(usuario);
-  }
 
   salas = [
     {
@@ -41,28 +26,28 @@ export class SalaService {
 
 
   icones = [{
-    icone:"reddit",
-    nome: 'logo-reddit'},
-    {icone:"html5",
-      nome: 'logo-html5'},
-    {icone:"javascript",
-      nome: 'logo-javascript'},
-    {icone:"rainy",
-      nome: 'rainy'},
-    {icone:"power",
-      nome: 'power'},
-    {icone:"paw",
-      nome: 'paw'},
-    {icone:"glasses",
-      nome: 'glasses'},
-    {icone:"circle",
-      nome: 'refresh-circle'},
-    {icone:"left",
-      nome: 'return-left'},
-    {icone:"python",
-      nome: 'logo-python'},
-    {icone:"pizza",
-      nome: 'pizza'}
+    icone:"american-football",
+    nome: 'american-football'},
+    {icone:"logo-android",
+      nome: 'logo-android'},
+    {icone:"logo-apple",
+      nome: 'logo-apple'},
+    {icone:"baseball",
+      nome: 'baseball'},
+    {icone:"beer",
+      nome: 'beer'},
+    {icone:"bug",
+      nome: 'bug'},
+    {icone:"car",
+      nome: 'car'},
+    {icone:"disc",
+      nome: 'disc'},
+    {icone:"flame",
+      nome: 'flame'},
+    {icone:"flask",
+      nome: 'flask'},
+    {icone:"flower",
+      nome: 'flower'}
   ];
 
   nomeNaSala(nome, sala) {
